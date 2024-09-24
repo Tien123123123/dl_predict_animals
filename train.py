@@ -1,5 +1,8 @@
 import os.path
 import argparse
+
+from PyQt5.QtGui.QRawFont import weight
+
 from cnn_model import my_cnn
 from animals_created import animal_dataset
 from sklearn.metrics import accuracy_score, confusion_matrix
@@ -99,8 +102,10 @@ def train(args):
     train_dataset = animal_dataset(root=root, is_train=True, transform=transforms)
     val_dataset = animal_dataset(root=root, is_train=False, transform=transforms)
     # model = my_cnn(num_classes=len(train_dataset.categories))
-    model = mobilenet_v2(weights=MobileNet_V2_Weights.IMAGENET1K_V1)
-    model.classifier[1] = nn.Linear(in_features=1280, out_features=len(train_dataset.categories), bias=True)
+    # model = mobilenet_v2(weights=MobileNet_V2_Weights.IMAGENET1K_V1)
+    # model.classifier[1] = nn.Linear(in_features=1280, out_features=len(train_dataset.categories), bias=True)
+    model = resnet18(weights=ResNet18_Weights.IMAGENET1K_V1)
+    model.fc = nn.Linear(in_features=512, out_features=len(train_dataset.categories), bias=True)
     model.to(device)
 
     # Hyper parameters
