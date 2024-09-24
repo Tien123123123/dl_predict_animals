@@ -35,7 +35,9 @@ The goal of this project is to use PyTorch to train and validate a Convolutional
 4. Results:
   - Image Output:
 ![image](https://github.com/user-attachments/assets/60c727c8-89d3-4674-b7aa-63fcc56bd8ad)
-  - Video Output:
-https://github.com/user-attachments/assets/0b6c5d6d-704b-4b92-bc56-12d131fe8ef8
+  - Video Output: https://github.com/user-attachments/assets/0b6c5d6d-704b-4b92-bc56-12d131fe8ef8
+ 
+  - ![image](https://github.com/user-attachments/assets/7cea81d7-8fa4-4e2b-ba62-964e7da9fe4b)
+
 
 
