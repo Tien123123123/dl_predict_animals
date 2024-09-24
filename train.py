@@ -1,8 +1,5 @@
 import os.path
 import argparse
-
-from PyQt5.QtGui.QRawFont import weight
-
 from cnn_model import my_cnn
 from animals_created import animal_dataset
 from sklearn.metrics import accuracy_score, confusion_matrix
@@ -57,8 +54,8 @@ def get_args():
 
     # Path & Folder
     parser.add_argument("--data_path", type=str, default="animals", help="Dataset path")
-    parser.add_argument("--save_path", type=str, default="save_models/mobilenet_v2", help="Save model's parameter location")
-    parser.add_argument("--log_dir", type=str, default="tensorboard/mobilenet_v2", help="Tensorboard location name")
+    parser.add_argument("--save_path", type=str, default="save_models/resnet18", help="Save model's parameter location")
+    parser.add_argument("--log_dir", type=str, default="tensorboard/resnet18", help="Tensorboard location name")
 
     # Hyper parameters
     parser.add_argument("--epoch", "-e", type=int, default=100, help="Total epochs for training and validating process")
@@ -68,7 +65,7 @@ def get_args():
     # Another
     parser.add_argument("--image_size", "-i", type=int, default=224, help="Image total size (224x224)")
     parser.add_argument("--early_stopping", type=int, default=10, help="How many time before stop training process")
-    parser.add_argument("--continue_training", type=bool, default=False, help="True -> Continue training else False")
+    parser.add_argument("--continue_training", type=bool, default=True, help="True -> Continue training else False")
 
     args = parser.parse_args()
     return args
