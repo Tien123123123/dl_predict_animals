@@ -36,5 +36,6 @@ The goal of this project is to use PyTorch to train and validate a Convolutional
   - Image Output:
 ![image](https://github.com/user-attachments/assets/60c727c8-89d3-4674-b7aa-63fcc56bd8ad)
   - Video Output:
-![image](https://github.com/user-attachments/assets/100ff5d6-998a-4679-a898-4688fa7a0a3e)
+https://github.com/user-attachments/assets/0b6c5d6d-704b-4b92-bc56-12d131fe8ef8
+
 
