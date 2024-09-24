@@ -86,8 +86,6 @@ def inference(args):
         output = model(image)
         probs = softmax(output[0])
     predicted_prob, predicted_idx = torch.max(probs, dim=0)
-    print(probs)
-    print(predicted_prob, predicted_idx)
     cv2.imshow(f"{categories[predicted_idx]} - {predicted_prob*100:0.2f}%", cv2.resize(ori_image, (500, 800)))
     cv2.waitKey(0)
 
