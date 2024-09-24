@@ -12,7 +12,8 @@ import numpy as np
 from torch.utils.tensorboard import SummaryWriter
 import matplotlib.pyplot as plt
 import shutil
-from torchvision.models import resnet18, ResNet18_Weights
+from torchvision.models import resnet18, ResNet18_Weights, mobilenet_v2, MobileNet_V2_Weights
+from torch.optim.lr_scheduler import StepLR, ReduceLROnPlateau
 
 def plot_confusion_matrix(writer, cm, class_names, epoch):
     """
@@ -53,8 +54,8 @@ def get_args():
 
     # Path & Folder
     parser.add_argument("--data_path", type=str, default="animals", help="Dataset path")
-    parser.add_argument("--save_path", type=str, default="save_models", help="Save model's parameter location")
-    parser.add_argument("--log_dir", type=str, default="tensorboard", help="Tensorboard location name")
+    parser.add_argument("--save_path", type=str, default="save_models/mobilenet_v2", help="Save model's parameter location")
+    parser.add_argument("--log_dir", type=str, default="tensorboard/mobilenet_v2", help="Tensorboard location name")
 
     # Hyper parameters
     parser.add_argument("--epoch", "-e", type=int, default=100, help="Total epochs for training and validating process")
@@ -63,7 +64,7 @@ def get_args():
 
     # Another
     parser.add_argument("--image_size", "-i", type=int, default=224, help="Image total size (224x224)")
-    parser.add_argument("--early_stopping", type=int, default=5, help="How many time before stop training process")
+    parser.add_argument("--early_stopping", type=int, default=10, help="How many time before stop training process")
     parser.add_argument("--continue_training", type=bool, default=False, help="True -> Continue training else False")
 
     args = parser.parse_args()
@@ -80,7 +81,7 @@ def train(args):
     # Save models path
     board_path = args.log_dir
     save_path = args.save_path
-    if not args.continue_training:
+    if not args.continue_training and os.path.isdir(save_path) and os.path.isdir(board_path):
         shutil.rmtree(save_path)
         shutil.rmtree(board_path)
 
@@ -98,8 +99,8 @@ def train(args):
     train_dataset = animal_dataset(root=root, is_train=True, transform=transforms)
     val_dataset = animal_dataset(root=root, is_train=False, transform=transforms)
     # model = my_cnn(num_classes=len(train_dataset.categories))
-    model = resnet18(weights=ResNet18_Weights)
-    model.fc = nn.Linear(in_features=512, out_features=len(train_dataset.categories), bias=True)
+    model = mobilenet_v2(weights=MobileNet_V2_Weights.IMAGENET1K_V1)
+    model.classifier[1] = nn.Linear(in_features=1280, out_features=len(train_dataset.categories), bias=True)
     model.to(device)
 
     # Hyper parameters
@@ -110,6 +111,8 @@ def train(args):
     # Optim and Criterion
     optimizer = torch.optim.Adam(params= model.parameters(),lr=lr)
     criterion = nn.CrossEntropyLoss()
+    # Learning Rate Scheduler
+    scheduler = StepLR(optimizer=optimizer, step_size=5, gamma=0.1)
 
     # Dataloader
     train_dataloader = DataLoader(
@@ -218,6 +221,7 @@ def train(args):
                 print(f"Train and Validate process is stopped at {epoch+1}/{epochs}")
                 print(f"Best epoch {best_epoch} - Best accuracy {best_accuracy}")
                 exit(0)
+        scheduler.step()
 
 
 
