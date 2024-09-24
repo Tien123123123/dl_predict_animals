@@ -1,16 +1,16 @@
 Project: dl_predict_animals
 Project Objective:
 The goal of this project is to use PyTorch to train and validate a Convolutional Neural Network (CNN) model for classifying animals into one of 10 categories:
-  Butterfly
-  Cat
-  Chicken
-  Cow
-  Dog
-  Elephant
-  Horse
-  Sheep
-  Spider
-  Squirrel
+- Butterfly
+- Cat
+- Chicken
+- Cow
+- Dog
+- Elephant
+- Horse
+- Sheep
+- Spider
+- Squirrel
   Project Components:
 1. animals_created.py
 - Functionality: This script creates a dataset for training the CNN model from the images in the specified animals folder.
