@@ -33,8 +33,8 @@ The goal of this project is to use PyTorch to train and validate a Convolutional
   - Image Inference: It reads an image, processes it, runs the model for prediction, and displays the result.
   - Video Inference (commented out): The script supports reading frames from a video, running the model for each frame, and writing the annotated result back to an output video.
 4. Results:
-Image Output:
+  - Image Output:
 ![image](https://github.com/user-attachments/assets/60c727c8-89d3-4674-b7aa-63fcc56bd8ad)
-Video Output:
+  - Video Output:
 ![image](https://github.com/user-attachments/assets/100ff5d6-998a-4679-a898-4688fa7a0a3e)
 
