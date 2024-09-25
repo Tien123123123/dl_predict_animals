@@ -33,6 +33,18 @@ The goal of this project is to use PyTorch to train and validate a Convolutional
   - Image Inference: It reads an image, processes it, runs the model for prediction, and displays the result.
   - Video Inference (commented out): The script supports reading frames from a video, running the model for each frame, and writing the annotated result back to an output video.
 4. Results:
+  - Tensorboard:
+    - Train
+![image](https://github.com/user-attachments/assets/f98d15f0-26b1-48c2-9db2-8285b3089ce7)
+
+    - Validation:
+![image](https://github.com/user-attachments/assets/45a7767b-e1a6-4897-946a-139a75f0a903)
+
+![image](https://github.com/user-attachments/assets/d91d726b-c091-4c6f-9a0e-d7cab8054c74)
+    - Confusion Matrix Img:
+![image](https://github.com/user-attachments/assets/07eba00e-02a0-4048-8dee-802ee2c89cc4)
+
+
   - Image Output:
 ![image](https://github.com/user-attachments/assets/60c727c8-89d3-4674-b7aa-63fcc56bd8ad)
   - Video Output: https://github.com/user-attachments/assets/0b6c5d6d-704b-4b92-bc56-12d131fe8ef8
