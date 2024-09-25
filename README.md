@@ -31,7 +31,7 @@ The goal of this project is to use PyTorch to train and validate a Convolutional
 3. Inference.py
   - Functionality: This script loads the best-performing model.
   - Image Inference: It reads an image, processes it, runs the model for prediction, and displays the result.
-  - Video Inference (commented out): The script supports reading frames from a video, running the model for each frame, and writing the annotated result back to an output video.
+  - Video Inference: The script supports reading frames from a video, running the model for each frame, and writing the annotated result back to an output video.
 4. Results:
   - Tensorboard:
     - Train
