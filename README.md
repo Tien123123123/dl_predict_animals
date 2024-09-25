@@ -42,7 +42,8 @@ The goal of this project is to use PyTorch to train and validate a Convolutional
 
 ![image](https://github.com/user-attachments/assets/d91d726b-c091-4c6f-9a0e-d7cab8054c74)
     - Confusion Matrix Img:
-![image](https://github.com/user-attachments/assets/07eba00e-02a0-4048-8dee-802ee2c89cc4)
+
+  ![image](https://github.com/user-attachments/assets/07eba00e-02a0-4048-8dee-802ee2c89cc4)
 
 
   - Image Output:
