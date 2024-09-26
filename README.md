@@ -1,6 +1,6 @@
 
 Project Objective:
-The goal of this project is to use PyTorch to train and validate a Convolutional Neural Network (CNN) model for classifying animals into one of 10 categories from Animal Data (Animal folder can be found on master branch):
+The goal of this project is to use PyTorch to train and validate a Convolutional Neural Network (CNN) model for classifying animals into one of 10 categories from Animals File:
 - Butterfly
 - Cat
 - Chicken
