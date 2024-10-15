@@ -1,5 +1,7 @@
 import os.path
 import argparse
+
+from fsspec.registry import default
 from torchvision.models.quantization import resnet18, mobilenet_v2
 from cnn_model import my_cnn
 import torch
@@ -13,11 +15,13 @@ warnings.filterwarnings("ignore")
 def get_args():
     parser = argparse.ArgumentParser(description="Train CNN model")
     # Image
-    parser.add_argument("--image-path", "-p", type=str, help="path to an image", required=False)
-    parser.add_argument("--image-size", "-s", type=int, default=224, help="Common size of image")
+    parser.add_argument("--image_path", "-i", type=str, help="path to an image", required=False)
+    parser.add_argument("--image_size", "-s", type=int, default=224, help="Common size of image")
+    parser.add_argument("--image_size_output", type=int, default=500, help="size of predicted image")
     # Video
-    parser.add_argument("--video-path", "-v", type=str, help="path to a video", required=False)
-    parser.add_argument("--frame-size", "-f", type=int, default=224, help="Common size of frame")
+    parser.add_argument("--video_path", "-v", type=str, help="path to a video", required=False)
+    parser.add_argument("--frame_size", "-f", type=int, default=224, help="Common size of frame")
+    parser.add_argument("--save_video", type=str, default="Video/output.mp4", help="Save path for predicted video")
     # Check point
     parser.add_argument("--checkpoint-path", "-c", type=str, help="Path to trained checkpoint",
                         default="save_models/resnet18/best.pt")
@@ -44,7 +48,7 @@ def inference(args):
         cap = cv2.VideoCapture(args.video_path)
         height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
         width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-        out_video = cv2.VideoWriter("Video/output.mp4", cv2.VideoWriter_fourcc(*"mp4v"), int(cap.get(cv2.CAP_PROP_FPS)),
+        out_video = cv2.VideoWriter(args.save_video, cv2.VideoWriter_fourcc(*"mp4v"), int(cap.get(cv2.CAP_PROP_FPS)),
                                     (width, height))
         while cap.isOpened():
             flag, ori_frame = cap.read()
@@ -82,7 +86,7 @@ def inference(args):
             output = model(image)
             probs = softmax(output[0])
         predicted_prob, predicted_idx = torch.max(probs, dim=0)
-        cv2.imshow(f"{categories[predicted_idx]} - {predicted_prob * 100:0.2f}%", cv2.resize(ori_image, (500, 800)))
+        cv2.imshow(f"{categories[predicted_idx]} - {predicted_prob * 100:0.2f}%", cv2.resize(ori_image, (args.image_size_output, args.image_size_output)))
         cv2.waitKey(0)
 
 
